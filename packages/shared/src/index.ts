@@ -7,11 +7,11 @@ export type ServiceName = 'auth' | 'payments' | 'inventory';
 export type HealthStatus = 'HEALTHY' | 'DEGRADED' | 'CRITICAL';
 export type IncidentStatus = 'OPEN' | 'IN_PROGRESS' | 'RESOLVED';
 export type BugType =
-  | 'LATENCY'
-  | 'ERROR_RATE'
-  | 'MEMORY_LEAK'
-  | 'CRASH'
-  | 'CORRUPT_RESPONSE';
+  | 'SYNTAX_ERROR'
+  | 'TYPE_MISMATCH'
+  | 'LOGIC_ERROR'
+  | 'RENAME_VAR'
+  | 'DELETE_IMPORT';
 
 export interface Service {
   name: ServiceName;

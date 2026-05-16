@@ -21,6 +21,9 @@
         "./src/*"
       ]
     },
+    "strict": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
     "noEmit": true,
     "resolveJsonModule": true,
     "isolatedModules": true
