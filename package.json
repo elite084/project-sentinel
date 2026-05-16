@@ -17,5 +17,12 @@
     "tsx": "^4.7.2",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "@sentinel/shared": "workspace:*",
+    "@types/better-sqlite3": "^7.6.13",
+    "better-sqlite3": "^12.10.0",
+    "pino": "^9.14.0",
+    "pino-pretty": "^11.3.0"
   }
 }

@@ -9,11 +9,39 @@ const logger = createLogger(SERVICE);
 const app = Fastify({ logger: false });
 const startedAt = Date.now();
 
-app.get('/health', async () => {
+interface LoginResult {
+  token: string;
+  expiresIn: number;
+}
+
+// Core login logic shared by the route handler and the health self-test.
+function computeLogin(username: string): LoginResult {
+  const bucket = Math.floor(Date.now() / 300_000);
+  const token = Buffer.from(`${username}:${bucket}`).toString('base64url');
+  return { token, expiresIn: 300 };
+}
+
+app.get('/health', async (_, reply) => {
+  const uptime = Math.floor((Date.now() - startedAt) / 1000);
+  try {
+    const probe = computeLogin('__healthcheck__');
+    const decoded = Buffer.from(probe.token, 'base64url').toString('utf-8');
+    if (!decoded.startsWith('__healthcheck__:') || typeof probe.expiresIn !== 'number') {
+      throw new Error('shape mismatch');
+    }
+  } catch (err) {
+    void reply.code(503);
+    return {
+      status: 'CRITICAL' as HealthStatus,
+      service: SERVICE,
+      uptime,
+      reason: err instanceof Error ? err.message : 'unknown',
+    };
+  }
   const response: { status: HealthStatus; service: string; uptime: number } = {
     status: 'HEALTHY',
     service: SERVICE,
-    uptime: Math.floor((Date.now() - startedAt) / 1000),
+    uptime,
   };
   logger.info(response, 'health check');
   return response;
@@ -29,12 +57,9 @@ app.post<{ Body: { username: string; password: string } }>(
       return { error: 'username and password are required' };
     }
 
-    // Deterministic token: base64(username:timeBucket) — rotates every 5 minutes
-    const bucket = Math.floor(Date.now() / 300_000);
-    const token = Buffer.from(`${username}:${bucket}`).toString('base64url');
-
+    const result = computeLogin(username);
     logger.info({ username }, 'login');
-    return { token, expiresIn: 300 };
+    return result;
   },
 );
 
