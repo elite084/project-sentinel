@@ -1,0 +1,18 @@
+{"incidentId":"INC-1778924335-V9DA","timestamp":"2026-05-16T09:38:55.509Z","service":"inventory","bugType":"SYNTAX_ERROR","filePath":"services/inventory/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778924341-ZJC8","timestamp":"2026-05-16T09:39:01.330Z","service":"auth","bugType":"DELETE_IMPORT","filePath":"services/auth/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778924347-VXLV","timestamp":"2026-05-16T09:39:07.660Z","service":"payments","bugType":"RENAME_VAR","filePath":"services/payments/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778924347-VXLV","timestamp":"2026-05-16T09:39:22.451Z","service":"payments","bugType":"RENAME_VAR","filePath":"services/payments/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778924341-ZJC8","timestamp":"2026-05-16T09:39:22.453Z","service":"auth","bugType":"DELETE_IMPORT","filePath":"services/auth/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778924335-V9DA","timestamp":"2026-05-16T09:39:22.454Z","service":"inventory","bugType":"SYNTAX_ERROR","filePath":"services/inventory/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778924474-86AQ","timestamp":"2026-05-16T09:41:14.610Z","service":"inventory","bugType":"DELETE_IMPORT","filePath":"services/inventory/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778924474-86AQ","timestamp":"2026-05-16T09:44:32.868Z","service":"inventory","bugType":"DELETE_IMPORT","filePath":"services/inventory/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778943552-4HTN","timestamp":"2026-05-16T14:59:12.502Z","service":"payments","bugType":"RENAME_VAR","filePath":"services/payments/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778943552-4HTN","timestamp":"2026-05-16T15:17:49.941Z","service":"payments","bugType":"RENAME_VAR","filePath":"services/payments/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778944727-46T2","timestamp":"2026-05-16T15:18:47.070Z","service":"payments","bugType":"TYPE_MISMATCH","filePath":"services/payments/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778944791-TA8P","timestamp":"2026-05-16T15:19:51.946Z","service":"payments","bugType":"RENAME_VAR","filePath":"services/payments/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778944791-TA8P","timestamp":"2026-05-16T15:20:30.756Z","service":"payments","bugType":"RENAME_VAR","filePath":"services/payments/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778944727-46T2","timestamp":"2026-05-16T15:20:30.759Z","service":"payments","bugType":"TYPE_MISMATCH","filePath":"services/payments/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778945274-G4S9","timestamp":"2026-05-16T15:27:54.335Z","service":"payments","bugType":"SYNTAX_ERROR","filePath":"services/payments/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778945274-G4S9","timestamp":"2026-05-16T15:33:27.171Z","service":"payments","bugType":"SYNTAX_ERROR","filePath":"services/payments/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778947089-RKFI","timestamp":"2026-05-16T15:58:09.552Z","service":"inventory","bugType":"SYNTAX_ERROR","filePath":"services/inventory/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778947093-DMK9","timestamp":"2026-05-16T16:03:00.000Z","status":"RESOLVED","rootCause":"Chaos SYNTAX_ERROR removed the closing } of the arrow function passed to app.listen(), leaving the function body unclosed — service could not parse or start","fixSummary":"Restored ); → }); on line 76, closing the arrow function body","testFile":"services/inventory/__tests__/SYNTAX_ERROR-INC-1778947093-DMK9.test.ts","commitSha":"05ffc05","agent":"orchestrator+debugger-alpha+qa-beta","durationMs":192000}

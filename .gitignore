@@ -9,6 +9,7 @@ dist/
 
 # Logs (keep the folder via .gitkeep)
 *.log
+!docs/incident-history.log
 
 # Database
 sentinel.db
