@@ -21,3 +21,7 @@
 {"incidentId":"INC-1778947089-RKFI","timestamp":"2026-05-16T16:50:07.630Z","service":"inventory","bugType":"SYNTAX_ERROR","filePath":"services/inventory/src/index.ts","status":"RESET"}
 {"incidentId":"INC-1778949477-HEZO","timestamp":"2026-05-16T16:50:30.000Z","status":"RESOLVED","rootCause":"Chaos SYNTAX_ERROR removed closing } from app.listen callback — identical to INC-1778947093-DMK9","fixSummary":"chaos:reset restored file; existing regression test confirms fix green","testFile":"services/inventory/__tests__/SYNTAX_ERROR-INC-1778947093-DMK9.test.ts","commitSha":"05ffc05","agent":"orchestrator+debugger-alpha","durationMs":510000}
 {"incidentId":"INC-1778950451-F48W","timestamp":"2026-05-16T16:54:11.020Z","service":"auth","bugType":"DELETE_IMPORT","filePath":"services/auth/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778950451-F48W","timestamp":"2026-05-16T17:04:52.212Z","service":"auth","bugType":"DELETE_IMPORT","filePath":"services/auth/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778951251-L9AU","timestamp":"2026-05-16T17:07:31.018Z","service":"auth","bugType":"RENAME_VAR","filePath":"services/auth/src/index.ts","status":"INJECTED"}
+{"incidentId":"INC-1778951251-L9AU","timestamp":"2026-05-16T17:08:09.898Z","service":"auth","bugType":"RENAME_VAR","filePath":"services/auth/src/index.ts","status":"RESET"}
+{"incidentId":"INC-1778951457-KGIJ","timestamp":"2026-05-16T17:10:57.602Z","service":"auth","bugType":"LOGIC_ERROR","filePath":"services/auth/src/index.ts","status":"INJECTED"}
