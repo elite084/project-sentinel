@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import Database from 'better-sqlite3';
 import path from 'path';
+import { existsSync } from 'node:fs';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,13 +20,20 @@ interface IncidentRow {
 
 export function GET() {
   const dbPath = path.resolve(process.cwd(), '..', 'sentinel.db');
-  const db = new Database(dbPath, { readonly: true });
+  if (!existsSync(dbPath)) return NextResponse.json([]);
   try {
-    const rows = db
-      .prepare('SELECT * FROM incidents ORDER BY opened_at DESC LIMIT 50')
-      .all() as IncidentRow[];
-    return NextResponse.json(rows);
-  } finally {
-    db.close();
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const Database = require('better-sqlite3') as typeof import('better-sqlite3').default;
+    const db = new Database(dbPath, { readonly: true });
+    try {
+      const rows = db
+        .prepare('SELECT * FROM incidents ORDER BY opened_at DESC LIMIT 50')
+        .all() as IncidentRow[];
+      return NextResponse.json(rows);
+    } finally {
+      db.close();
+    }
+  } catch {
+    return NextResponse.json([]);
   }
 }
