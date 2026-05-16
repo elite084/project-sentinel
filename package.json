@@ -1,0 +1,21 @@
+{
+  "name": "project-sentinel",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev:services": "concurrently --names auth,payments,inventory --prefix-colors cyan,yellow,green \"pnpm --filter @sentinel/auth dev\" \"pnpm --filter @sentinel/payments dev\" \"pnpm --filter @sentinel/inventory dev\"",
+    "dev:app": "pnpm --filter @sentinel/app dev",
+    "dev": "concurrently --names services,app --prefix-colors blue,magenta \"pnpm run dev:services\" \"pnpm run dev:app\"",
+    "chaos:run": "tsx scripts/chaos.ts",
+    "chaos:reset": "tsx scripts/chaos-reset.ts",
+    "poll": "tsx services/poller.ts",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "concurrently": "^8.2.2",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}

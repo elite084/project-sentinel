@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.next/
+.turbo/
+
+# Logs (keep the folder via .gitkeep)
+*.log
+
+# Database
+sentinel.db
+sentinel.db-shm
+sentinel.db-wal
+
+# Chaos artefacts
+.chaos-backups/
+.chaos-state.json
+
+# Environment
+.env*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
