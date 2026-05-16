@@ -17,7 +17,7 @@ export function GET() {
   if (!existsSync(dbPath)) return NextResponse.json([]);
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const Database = require('better-sqlite3') as typeof import('better-sqlite3').default;
+    const Database = require('better-sqlite3') as typeof import('better-sqlite3');
     const db = new Database(dbPath, { readonly: true });
     try {
       const rows = db.prepare('SELECT * FROM services ORDER BY id').all() as ServiceRow[];
