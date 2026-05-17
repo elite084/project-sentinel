@@ -6,12 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## OVERVIEW
 
-Project Sentinel is an autonomous incident resolution engine. A Chaos Monkey injects real source-level bugs (syntax errors, type mismatches, logic inversions, renamed variables, deleted imports) into three Fastify microservices. A SQLite-backed Next.js 14 dashboard surfaces the resulting incidents. Specialized subagents — debugger-alpha and qa-beta — are then coordinated by a main orchestrator to diagnose, patch, test, and commit fixes under a strict resolution protocol, with every action recorded in both sentinel.db and an append-only incident log.
+Project Sentinel is an autonomous incident resolution engine. A Chaos Monkey injects real source-level bugs (syntax errors, type mismatches, logic errors, renamed variables, deleted imports) into three Fastify microservices. A SQLite-backed Next.js 14 dashboard surfaces the resulting incidents. Specialized subagents — debugger-alpha and qa-beta — are then coordinated by a main orchestrator to diagnose, patch, test, and commit fixes under a strict resolution protocol, with every action recorded in both sentinel.db and an append-only incident log.
 
 ## ARCHITECTURE
 
 - Monorepo (pnpm workspaces): `pnpm install` at root installs everything
-- `/app` — Next.js 14 App Router dashboard (Tailwind, dark mode, TypeScript strict)
+- `/app` — Next.js 14 App dashboard 
 - `/services/{auth,payments,inventory}` — Fastify microservices on ports 4001/4002/4003
 - `/packages/shared` — shared `ServiceName`, `BugType`, `Incident` types; `SERVICE_REGISTRY`; `createLogger()`
 - `/scripts` — `chaos.ts` (injects bugs), `chaos-reset.ts` (restores files)
@@ -28,21 +28,6 @@ pnpm chaos:reset      # restore all mutated files
 pnpm test             # vitest across all workspaces
 ```
 
-## CODING STANDARDS
-
-- Strict TypeScript everywhere: no `any`, no `@ts-ignore`, no `@ts-expect-error` without a justification comment on the same line
-- Naming: `camelCase` for variables and functions, `PascalCase` for types and React components, `kebab-case` for filenames
-- Services use `createLogger()` from `@sentinel/shared` — never `console.log` in service code
-- Every async function has explicit error handling (no unhandled promise rejections)
-- No manual CSS in `/app` — use the `frontend-design` skill only
-- Import order: Node built-ins → external packages → `@sentinel/*` → relative paths
-
-## COMMIT CONVENTION
-
-Conventional commits only. Allowed prefixes: `feat:`, `fix:`, `test:`, `chore:`, `docs:`, `refactor:`.
-
-Every `fix:` commit body must include: `Resolves: INC-<id>`.
-
 ## RESOLUTION PROTOCOL
 
 This is the contract every Sentinel subagent must follow when resolving an incident. Violations are failures.
@@ -53,7 +38,7 @@ This is the contract every Sentinel subagent must follow when resolving an incid
 
 3. **Minimal patch.** The fix must be the smallest change that resolves the root cause. No refactoring, no formatting, no opportunistic improvements.
 
-4. **Regression test is mandatory.** Every fix is accompanied by a Vitest regression test at `/services/<service>/__tests__/<bugType>-<incidentId>.test.ts` that:
+4. **Regression test is mandatory.** Every fix is accompanied by a regression test at `/services/<service>/__tests__/<bugType>-<incidentId>.test.ts` that:
    - Fails when run against the broken code
    - Passes after the patch is applied
    - Tests the specific behavior that the bug broke
