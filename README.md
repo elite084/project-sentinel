@@ -2,7 +2,7 @@
 
 Project Sentinel is an autonomous incident resolution engine that monitors a suite of microservices, detects anomalies and injected faults via its Chaos Monkey, and drives automated remediation — all surfaced through a real-time Next.js dashboard.
 
-## Getting Started
+# Commands
 
 ```bash
 pnpm install
